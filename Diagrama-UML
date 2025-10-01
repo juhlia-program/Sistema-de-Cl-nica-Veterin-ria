@@ -1,0 +1,38 @@
+classDiagram
+    class Tutor {
+        -String nome
+        -String cpf
+        -String telefone
+        -String endereco
+        +Tutor(nome, cpf, telefone, endereco)
+    }
+
+    class Animal {
+        -String nome
+        -String especie
+        -String raca
+        -LocalDate dataNascimento
+        +Animal(nome, especie, raca, dataNascimento)
+    }
+
+    class Consulta {
+        -LocalDate data
+        -LocalTime hora
+        -String motivo
+        -String diagnostico
+        +Consulta(data, hora, motivo, diagnostico)
+    }
+
+    Tutor "1" -- "*" Animal : possui
+    Animal "1" -- "*" Consulta : tem
+
+A associação é um relacionamento estrutural que indica que objetos de uma classe estão conectados a objetos de outra. No diagrama, a linha sólida entre Tutor e Animal representa essa relação.
+
+Aplicação no Contexto: Um Tutor (dono) possui um ou mais Animais. As classes têm ciclos de vida independentes: um Tutor pode existir no sistema sem ter um Animal cadastrado, e (dependendo da regra de negócio) 
+um Animal pode ser cadastrado antes de ser associado a um Tutor. A multiplicidade "1" para Tutor e "*" para Animal indica que um tutor pode ter vários animais.
+
+A composição é uma forma forte de agregação, representando uma relação "todo-parte". A parte (neste caso, Consulta) não pode existir sem o todo (Animal). É representada por um losango preenchido no lado do "todo"
+
+Aplicação no Contexto: Uma Consulta é uma "parte" da vida de um Animal no sistema da clínica. Uma Consulta não faz sentido e não pode existir sem um Animal associado a ela. Se um Animal for removido do sistema, 
+todas as suas Consultas também devem ser removidas, caracterizando a forte dependência da composição.
+
